@@ -1,12 +1,13 @@
 // App.js
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import NavBar from "./NavBar";
-import Login from "./Login";
-import Profile from "./Profile";
-import Footer from "./Footer";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Feed from "./components/Feed";
 
 const AppLayout = () => {
   return (
@@ -27,8 +28,9 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <AppLayout />, 
     children: [
+      {path: "/", element: <Feed/>},
       { path: "/login", element: <Login /> },
-      { path: "/profile", element: <Profile /> },
+      { path: "/profile", element: <Profile />},
     ],
   },
 ]);
