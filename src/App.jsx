@@ -1,43 +1,29 @@
 // App.js
 import React from "react";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import {  BrowserRouter, Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Feed from "./components/Feed";
+import Body from "./components/Body";
 
-const AppLayout = () => {
+const App = () => {
   return (
     <Provider store={appStore}>
-    <div>
-      <NavBar />
-      {/* Outlet renders the matching child route */}
-      <Outlet />
-      <Footer/>
-    </div>
+      <BrowserRouter basename="/">
+      <Routes>
+        <Route path="/" element={<Body />}>
+        <Route path="/" element={<Feed />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/profile" element={<Profile />}/>
+        </Route>
+      </Routes>
+      </BrowserRouter>
     </Provider>
   );
 };
 
-// Route Configuration
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />, 
-    children: [
-      {path: "/", element: <Feed/>},
-      { path: "/login", element: <Login /> },
-      { path: "/profile", element: <Profile />},
-    ],
-  },
-]);
 
-// Root Render
-const App = () => {
-  return <RouterProvider router={appRouter} />;
-};
 
 export default App;
