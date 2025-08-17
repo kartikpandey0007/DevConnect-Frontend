@@ -8,25 +8,27 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("ramlal@gmail.com");
   const [password, setPassword] = useState("Ramlal@234");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try{
-      const res = await axios.post(BASE_URL+"/login", {
-      emailID: emailId,
-      password: password
-    },
-    {withCredentials: true}
-  )
-  dispatch(addUser(res.data))
-  return navigate("/")
-  }
-    catch(err){
-      console.error(err)
+    try {
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          emailID: emailId,
+          password: password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data));
+      return navigate("/");
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
+      console.error(err);
     }
-
-  };//make api call to login 
+  }; //make api call to login
 
   return (
     <div className="flex justify-center my-10">
@@ -58,6 +60,7 @@ const Login = () => {
               <p className="label">Required*</p>
             </fieldset>
           </div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login
