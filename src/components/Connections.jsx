@@ -29,17 +29,17 @@ const Connections = () => {
       <h1 className="text-bold text-5xl">Connections</h1>
 
       {connections.map((connection) => {
-        const { firstName, lastName, photoUrl, about, age, gender, skills } = connection;
+        const { _id,firstName, lastName, photoUrl, about, age, gender, skills } = connection;
         return (
-          <div className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
-            <div>
+          <div key={_id} className="flex m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto">
+            <div className="flex-shrink-0">
               <img
                 alt="image"
                 className="w-20 h-20 rounded-full"
                 src={photoUrl}
               />
             </div>
-            <div className="text-left mx-4">
+            <div className="text-left mx-4 text-xl">
               <h2 className="font-bold">
                 {firstName} {lastName}
               </h2>
@@ -49,7 +49,7 @@ const Connections = () => {
                 {skills.map((skill) => skill).join(", ")}
                 </p>
               )}
-              <p className="text-sm">{about}</p>
+              <p>{about}</p>
             </div>
           </div>
         );
