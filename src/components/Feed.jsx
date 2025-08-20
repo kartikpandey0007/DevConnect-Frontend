@@ -28,6 +28,10 @@ const Feed = () => {
 
  if (!feed) return <div><Shimmer/></div>;
 
+ if(feed.length === 0) {
+  return <h1 className="flex justify-center font-bold my-3">No User Found, Ask Your Friends to Join</h1>
+ }
+
 
   return (
     <div className="flex flex-col items-center justify-center">

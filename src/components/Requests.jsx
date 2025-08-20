@@ -76,7 +76,7 @@ const Requests = () => {
               </h2>
               {age && gender && <p>{age + ", " + gender}</p>}
               {skills && (
-                <p className="text-sm">
+                <p className="font-bold">
                   Skills: {skills.map((skill) => skill).join(", ")}
                 </p>
               )}

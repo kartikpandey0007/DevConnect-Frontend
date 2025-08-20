@@ -7,13 +7,13 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const EditProfile = ({ user }) => {
-  const [firstName, setFirstName] = useState(user.firstName || "");
-  const [lastName, setLastName] = useState(user.lastName || "");
-  const [age, setAge] = useState(user.age || "");
-  const [about, setAbout] = useState(user.about || "");
-  const [photoUrl, setPhotoUrl] = useState(user.photoUrl || "");
-  const [gender, setGender] = useState(user.gender || "");
-  const [skills, setSkills] = useState("");
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [age, setAge] = useState(user.age);
+  const [about, setAbout] = useState(user.about);
+  const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
+  const [gender, setGender] = useState(user.gender);
+  const [skills, setSkills] = useState(user.skills);
   const dispatch = useDispatch();
 
   const handleEditProfile = async () => {

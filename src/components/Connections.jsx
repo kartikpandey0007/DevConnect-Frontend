@@ -39,13 +39,13 @@ const Connections = () => {
                 src={photoUrl}
               />
             </div>
-            <div className="text-left mx-4 text-xl">
-              <h2 className="font-bold">
+            <div className="text-left mx-4">
+              <h2 className="font-bold text-xl">
                 {firstName} {lastName}
               </h2>
               {age && gender && <p>{age + ", " + gender}</p>}
               {skills && (
-                <p className="text-sm">
+                <p className="font-bold">
                 {skills.map((skill) => skill).join(", ")}
                 </p>
               )}
