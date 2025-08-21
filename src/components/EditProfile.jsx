@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import UserCard from "./UserCard";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
@@ -13,11 +12,20 @@ const EditProfile = ({ user }) => {
   const [about, setAbout] = useState(user.about);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl || "");
   const [gender, setGender] = useState(user.gender || "");
-  const [skills, setSkills] = useState(user.skills);
+  const [skills, setSkills] = useState(
+    user.skills ? user.skills.join(", ") : ""
+  );
+  const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
 
   const handleEditProfile = async () => {
     try {
+      const skillsArray = skills
+        ? skills
+            .split(",")
+            .map((skill) => skill.trim())
+            .filter((skill) => skill)
+        : [];
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
         {
@@ -27,130 +35,169 @@ const EditProfile = ({ user }) => {
           about,
           photoUrl,
           gender,
+          skills: skillsArray,
         },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data)); //update user with new data
+      dispatch(addUser(res.data));
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="flex justify-center my-10">
-      <div className="flex justify-center mx-10">
-        <div className="card bg-base-300 w-96 shadow-sm">
-          <div className="card-body">
-            <h2 className="card-title">Edit Profile</h2>
-            <div>
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">FirstName:</legend>
-                <input
-                  type="text"
-                  value={firstName}
-                  className="input"
-                  placeholder="eg: Johny"
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </fieldset>
+    <>
+      <div className="flex justify-center my-10 text-green-200">
+        <div className="flex justify-center mx-10">
+          <div className="bg-black border border-green-500 w-96 shadow-[0_0_20px_rgba(0,255,102,0.3)] rounded-xl">
+            <div className="p-6">
+              <h2 className="text-green-400 text-xl font-semibold mb-4">
+                Edit Profile
+              </h2>
+              <div>
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">
+                    FirstName:
+                  </legend>
+                  <input
+                    type="text"
+                    value={firstName}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="eg: Johny"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </fieldset>
 
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">LastName:</legend>
-                <input
-                  type="text"
-                  value={lastName}
-                  className="input"
-                  placeholder="eg: Walker"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </fieldset>
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">
+                    LastName:
+                  </legend>
+                  <input
+                    type="text"
+                    value={lastName}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="eg: Walker"
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </fieldset>
 
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">PhotoUrl:</legend>
-                <input
-                  type="text"
-                  value={photoUrl}
-                  className="input"
-                  placeholder="Upload Photo"
-                  onChange={(e) => setPhotoUrl(e.target.value)}
-                />
-              </fieldset>
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">
+                    PhotoUrl:
+                  </legend>
+                  <input
+                    type="text"
+                    value={photoUrl}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="Upload Photo"
+                    onChange={(e) => setPhotoUrl(e.target.value)}
+                  />
+                </fieldset>
 
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">Skills:</legend>
-                <input
-                  type="text"
-                  value={skills}
-                  className="input"
-                  placeholder="Add Your Skills"
-                  onChange={(e) => setSkills(e.target.value)}
-                />
-              </fieldset>
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">
+                    Skills:
+                  </legend>
+                  <input
+                    type="text"
+                    value={skills}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="Add Your Skills"
+                    onChange={(e) => setSkills(e.target.value)}
+                  />
+                </fieldset>
 
-        <fieldset className="fieldset relative">
-  <legend className="fieldset-legend">Gender:</legend>
-  <div className="relative">
-    <select
-      value={gender}
-      className="input appearance-none pr-8 cursor-pointer" // pr-8 → add space for arrow
-      onChange={(e) => setGender(e.target.value)}
-    >
-      <option value="" disabled>
-        Select gender
-      </option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-      <option value="others">Others</option>
-    </select>
+                <fieldset className="mb-4 relative">
+                  <legend className="text-sm text-green-300 mb-1">
+                    Gender:
+                  </legend>
+                  <div className="relative">
+                    <select
+                      value={gender}
+                      className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500 appearance-none pr-8 cursor-pointer"
+                      onChange={(e) => setGender(e.target.value)}
+                    >
+                      <option value="" disabled>
+                        Select gender
+                      </option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="others">Others</option>
+                    </select>
+                    <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-green-400">
+                      ▼
+                    </span>
+                  </div>
+                </fieldset>
 
-    {/* Custom down arrow */}
-    <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-gray-500">
-      ▼
-    </span>
-  </div>
-</fieldset>
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">Age:</legend>
+                  <input
+                    type="text"
+                    value={age}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter age"
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </fieldset>
 
+                <fieldset className="mb-4">
+                  <legend className="text-sm text-green-300 mb-1">
+                    About:
+                  </legend>
+                  <textarea
+                    type="text"
+                    value={about}
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 h-24 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    placeholder="About You"
+                    onChange={(e) => setAbout(e.target.value)}
+                  ></textarea>
+                </fieldset>
+              </div>
 
-
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">Age:</legend>
-                <input
-                  type="text"
-                  value={age}
-                  className="input"
-                  placeholder="Enter age"
-                  onChange={(e) => setAge(e.target.value)}
-                />
-              </fieldset>
-
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">About:</legend>
-                <textarea
-                  type="text"
-                  value={about}
-                  className="textarea h-24"
-                  placeholder="About You"
-                  onChange={(e) => setAbout(e.target.value)}
-                ></textarea>
-              </fieldset>
-            </div>
-
-            <div className="card-actions justify-center">
-              <button className="btn btn-primary" onClick={handleEditProfile}>
-                Update Profile
-              </button>
+              <div className="flex justify-center">
+                <button
+                  className="bg-green-500 text-black px-4 py-2 rounded-lg font-bold hover:bg-green-400 hover:shadow-[0_0_12px_#00ff66] transition"
+                  onClick={handleEditProfile}
+                >
+                  Update Profile
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
+        <div>
+          <h1 className="font-bold text-green-400">
+            My Profile (for Reference)
+          </h1>
+          <UserCard
+            user={{
+              firstName,
+              lastName,
+              photoUrl,
+              age,
+              about,
+              gender,
+              skills: skills
+                ? skills
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter((s) => s)
+                : [],
+            }}
+          />
+        </div>
       </div>
 
-      <div>
-        <h1 className="font-bold">My Profile(for Reference)</h1>
-        <UserCard
-          user={{ firstName, lastName, photoUrl, age, about, gender, skills }}
-        />
-      </div>
-    </div>
+      {showToast && (
+        <div className="fixed top-2 left-1/2 -translate-x-1/2 bg-green-600 text-black px-6 py-3 rounded-lg shadow-lg">
+          Profile Updated
+        </div>
+      )}
+    </>
   );
 };
 

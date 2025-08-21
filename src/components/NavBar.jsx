@@ -11,14 +11,7 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
-      const logout = await axios.post(BASE_URL + "/logout",
-        {
-          /*no data to pass for logout*/
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
       navigate("/login");
     } catch (err) {
@@ -27,46 +20,82 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div
+      className="navbar bg-black text-green-400 w-full 
+                    shadow-lg shadow-green-600/40 border-b border-green-700 px-4"
+    >
+      {/* Left section: Logo */}
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-green-400 hover:text-green-300 
+                     transition drop-shadow-[0_0_8px_rgba(0,255,102,0.9)]"
+        >
           DevConnect
         </Link>
       </div>
+
+      {/* Right section: Avatar + user name + menu */}
       {user && (
-        <div className="flex gap-2">
-          <div className="form-control my-1.5">Welcome, {user.firstName}</div>
-          <div className="dropdown dropdown-end mx-5 flex">
+        <div className="flex items-center gap-4">
+          <span
+            className="font-medium hidden sm:inline 
+                           drop-shadow-[0_0_6px_rgba(0,255,102,0.8)]"
+          >
+            Welcome, {user.firstName}
+          </span>
+
+          <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle avatar border border-green-600"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user.photoUrl} />
+                <img alt="user avatar" src={user.photoUrl} />
               </div>
             </div>
-            <ul 
+            <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-black text-green-400 rounded-lg z-10 mt-3 w-52 p-2 
+                         shadow-lg shadow-green-600/40 border border-green-700"
             >
               <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/profile" className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                <Link to="/" className="hover:text-green-300">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link to="/connections">My Connections</Link>
+                <Link
+                  to="/profile"
+                  className="justify-between hover:text-green-300"
+                >
+                  Profile
+                  <span className="badge bg-green-600 text-black">New</span>
+                </Link>
               </li>
               <li>
-                <Link to="/requests">Connection Requests</Link>
+                <Link to="/connections" className="hover:text-green-300">
+                  My Connections
+                </Link>
               </li>
-              <li onClick={handleLogout}>
-                <a>Logout</a>
+              <li>
+                <Link to="/requests" className="hover:text-green-300">
+                  Connection Requests
+                </Link>
+              </li>
+              <li>
+                <Link to="/entry" className="hover:text-green-300">
+                  Quick Requests
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left hover:text-red-500"
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

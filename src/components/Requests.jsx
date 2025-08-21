@@ -7,18 +7,22 @@ const Requests = () => {
   const [filteredRequests, setFilteredRequests] = useState([]);
 
   const reviewRequest = async (status, _id) => {
-    try{
-      const res = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id,{}, {
-        withCredentials: true,  })
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/review/" + status + "/" + _id,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
 
-        if (res.status >= 200 && res.status < 300) {
+      if (res.status >= 200 && res.status < 300) {
         setFilteredRequests((prev) => prev.filter((r) => r._id !== _id));
       }
-
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   const getRequests = async () => {
     try {
@@ -26,7 +30,7 @@ const Requests = () => {
         withCredentials: true,
       });
       setRequests(res.data.data);
-      setFilteredRequests(res.data.data)
+      setFilteredRequests(res.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -41,8 +45,10 @@ const Requests = () => {
   }
 
   return (
-    <div className="text-center justify-center my-10">
-      <h1 className="text-bold text-5xl">Requests</h1>
+    <div className="text-center justify-center my-10 ">
+      <h1 className="text-4xl font-bold text-green-400 mb-8 drop-shadow-lg">
+        Requests
+      </h1>
 
       {filteredRequests.map((request) => {
         const {
@@ -58,35 +64,58 @@ const Requests = () => {
         return (
           <div
             key={_id}
-            className="flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto"
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center
+                   bg-black text-green-400 rounded-xl shadow-lg shadow-green-400/30
+                   p-4 mx-auto mb-6 w-11/12 md:w-3/4 lg:w-2/3 transition-transform
+                   duration-300 hover:scale-105"
           >
             {/* User Image */}
             <div className="flex-shrink-0">
               <img
                 alt="image"
-                className="w-20 h-20 rounded-full"
-                src={photoUrl}
+                className="w-24 h-24 rounded-full border-2 border-green-600"
+                src={
+                  photoUrl || "https://www.w3schools.com/howto/img_avatar.png"
+                }
               />
             </div>
 
             {/* User Info */}
-            <div className="text-left mx-4 flex-1">
-              <h2 className="font-bold text-xl">
+            <div className="text-left sm:ml-6 mt-4 sm:mt-0 flex-1">
+              <h2 className="font-bold text-xl text-green-300">
                 {firstName + " " + lastName}
               </h2>
-              {age && gender && <p>{age + ", " + gender}</p>}
+              {age && gender && (
+                <p className="text-green-200 text-sm">{age + ", " + gender}</p>
+              )}
               {skills && (
-                <p className="font-bold">
+                <p className="font-semibold text-green-400 mt-1 flex flex-wrap">
                   Skills: {skills.map((skill) => skill).join(", ")}
                 </p>
               )}
-              <p>{about}</p>
+              <p className="text-green-200 mt-2 break-words">{about}</p>
             </div>
 
-            {/* Buttons aligned vertically center */}
-            <div className="flex gap-2 self-center">
-              <button className="btn btn-primary" onClick={()=>{reviewRequest("accepted",request._id)}}>Accept</button>
-              <button className="btn btn-secondary" onClick={()=>{reviewRequest("rejected",request._id)}}>Reject</button>
+            {/* Buttons */}
+            <div className="flex gap-2 mt-4 sm:mt-0 sm:ml-4 self-center">
+              <button
+                className="btn bg-green-600 text-black hover:bg-green-500 border-none px-4
+                       shadow-md hover:shadow-green-400/70 transition duration-300"
+                onClick={() => {
+                  reviewRequest("accepted", request._id);
+                }}
+              >
+                Accept
+              </button>
+              <button
+                className="btn bg-gray-800 text-green-400 hover:bg-gray-700 border border-green-600 px-4
+                       shadow-md hover:shadow-green-400/70 transition duration-300"
+                onClick={() => {
+                  reviewRequest("rejected", request._id);
+                }}
+              >
+                Reject
+              </button>
             </div>
           </div>
         );
