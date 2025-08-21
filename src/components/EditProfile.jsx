@@ -9,10 +9,10 @@ import { addUser } from "../utils/userSlice";
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
+  const [age, setAge] = useState(user.age || "");
   const [about, setAbout] = useState(user.about);
-  const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [gender, setGender] = useState(user.gender);
+  const [photoUrl, setPhotoUrl] = useState(user.photoUrl || "");
+  const [gender, setGender] = useState(user.gender || "");
   const [skills, setSkills] = useState(user.skills);
   const dispatch = useDispatch();
 
@@ -87,16 +87,30 @@ const EditProfile = ({ user }) => {
                 />
               </fieldset>
 
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend">Gender:</legend>
-                <input
-                  type="text"
-                  value={gender}
-                  className="input"
-                  placeholder="male, female, others"
-                  onChange={(e) => setGender(e.target.value)}
-                />
-              </fieldset>
+        <fieldset className="fieldset relative">
+  <legend className="fieldset-legend">Gender:</legend>
+  <div className="relative">
+    <select
+      value={gender}
+      className="input appearance-none pr-8 cursor-pointer" // pr-8 → add space for arrow
+      onChange={(e) => setGender(e.target.value)}
+    >
+      <option value="" disabled>
+        Select gender
+      </option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="others">Others</option>
+    </select>
+
+    {/* Custom down arrow */}
+    <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-gray-500">
+      ▼
+    </span>
+  </div>
+</fieldset>
+
+
 
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">Age:</legend>

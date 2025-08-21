@@ -10,11 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
-  const [about, setAbout] = useState("");
-  const [photoUrl, setPhotoUrl] = useState("https://www.w3schools.com/howto/img_avatar.png");
-  const [gender, setGender] = useState("");
-  const [skills, setSkills] = useState("");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,27 +34,17 @@ const Login = () => {
 
   const handleSignUp = async () => {
     try {
-       const skillsArr = skills
-      .split(",")               
-      .map(s => s.trim())   
-      .filter(s => s.length);
-
       const res = await axios.post(
         BASE_URL + "/signup",
         {
           firstName,
           lastName,
-          age,
-          about,
-          gender,
-          photoUrl,
-          skills: skillsArr,    
           emailID: emailId,
-          password: password,
+          password,
         },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data));
+      dispatch(addUser(res.data.data));
       return navigate("/profile");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
@@ -120,64 +105,6 @@ const Login = () => {
               />
               <p className="label">Required*</p>
             </fieldset>
-
-            {!isLoginForm && (
-              <>
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">PhotoUrl:</legend>
-                  <input
-                    type="text"
-                    value={photoUrl}
-                    className="input"
-                    placeholder="Upload Photo"
-                    onChange={(e) => setPhotoUrl(e.target.value)}
-                  />
-                </fieldset>
-
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Gender:</legend>
-                  <input
-                    type="text"
-                    value={gender}
-                    className="input"
-                    placeholder="male, female, others"
-                    onChange={(e) => setGender(e.target.value)}
-                  />
-                </fieldset>
-
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Age:</legend>
-                  <input
-                    type="text"
-                    value={age}
-                    className="input"
-                    placeholder="Enter age"
-                    onChange={(e) => setAge(e.target.value)}
-                  />
-                </fieldset>
-
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Skills:</legend>
-                  <input
-                    type="text"
-                    value={skills}
-                    className="input"
-                    placeholder="Add Your Skills"
-                    onChange={(e) => setSkills(e.target.value)}
-                  />
-                </fieldset>
-
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">About:</legend>
-                  <textarea
-                    className="textarea"
-                    value={about}
-                    placeholder="About You"
-                    onChange={(e) => setAbout(e.target.value)}
-                  ></textarea>
-                </fieldset>
-              </>
-            )}
           </div>
           <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
