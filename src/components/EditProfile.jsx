@@ -49,11 +49,11 @@ const EditProfile = ({ user }) => {
 
   return (
     <>
-      <div className="flex justify-center my-10 text-green-200">
-        <div className="flex justify-center mx-10">
-          <div className="bg-black border border-green-500 w-96 shadow-[0_0_20px_rgba(0,255,102,0.3)] rounded-xl">
-            <div className="p-6">
-              <h2 className="text-green-400 text-xl font-semibold mb-4">
+      <div className="flex flex-col md:flex-row justify-center items-start my-6 md:my-10 text-green-200 px-4 gap-6">
+        <div className="w-full flex justify-center">
+          <div className="bg-black border border-green-500 w-full sm:w-96 shadow-[0_0_20px_rgba(0,255,102,0.3)] rounded-xl">
+            <div className="p-5 sm:p-6">
+              <h2 className="text-green-400 text-lg sm:text-xl font-semibold mb-4">
                 Edit Profile
               </h2>
               <div>
@@ -150,7 +150,7 @@ const EditProfile = ({ user }) => {
                   <textarea
                     type="text"
                     value={about}
-                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 h-24 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500"
+                    className="w-full rounded-md px-3 py-2 bg-black text-green-200 border border-green-500 h-24 sm:h-28 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500 resize-none"
                     placeholder="About You"
                     onChange={(e) => setAbout(e.target.value)}
                   ></textarea>
@@ -159,7 +159,7 @@ const EditProfile = ({ user }) => {
 
               <div className="flex justify-center">
                 <button
-                  className="bg-green-500 text-black px-4 py-2 rounded-lg font-bold hover:bg-green-400 hover:shadow-[0_0_12px_#00ff66] transition"
+                  className="w-full sm:w-auto bg-green-500 text-black px-4 py-2 rounded-lg font-bold hover:bg-green-400 hover:shadow-[0_0_12px_#00ff66] transition"
                   onClick={handleEditProfile}
                 >
                   Update Profile
@@ -169,31 +169,33 @@ const EditProfile = ({ user }) => {
           </div>
         </div>
 
-        <div>
-          <h1 className="font-bold text-green-400">
+        <div className="w-full sm:w-auto">
+          <h1 className="font-bold text-green-400 text-center sm:text-left mb-4">
             My Profile (for Reference)
           </h1>
-          <UserCard
-            user={{
-              firstName,
-              lastName,
-              photoUrl,
-              age,
-              about,
-              gender,
-              skills: skills
-                ? skills
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter((s) => s)
-                : [],
-            }}
-          />
+          <div className="flex justify-center sm:justify-start">
+            <UserCard
+              user={{
+                firstName,
+                lastName,
+                photoUrl,
+                age,
+                about,
+                gender,
+                skills: skills
+                  ? skills
+                      .split(",")
+                      .map((s) => s.trim())
+                      .filter((s) => s)
+                  : [],
+              }}
+            />
+          </div>
         </div>
       </div>
 
       {showToast && (
-        <div className="fixed top-2 left-1/2 -translate-x-1/2 bg-green-600 text-black px-6 py-3 rounded-lg shadow-lg">
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-green-600 text-black px-6 py-3 rounded-lg shadow-lg z-50">
           Profile Updated
         </div>
       )}

@@ -32,14 +32,14 @@ const Body = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col bg-black text-green-200"
+      className="min-h-screen flex flex-col bg-black bg-opacity-80 text-green-200 bg-cover bg-center"
       style={{
         backgroundImage:
           "url('https://t4.ftcdn.net/jpg/02/07/15/43/360_F_207154340_wLIJus4m3SBl5sAQmpqN3Um7REnUhskU.jpg')",
       }}
     >
       <NavBar />
-      <div className="flex-1 p-4">
+      <div className="flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-12 w-full max-w-7xl mx-auto">
         <Outlet />
       </div>
     </div>

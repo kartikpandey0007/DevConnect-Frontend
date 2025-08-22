@@ -45,17 +45,17 @@ const Login = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen px-4 bg-cover bg-center"
+      className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 bg-cover bg-center"
       style={{
         backgroundImage:
           "url('https://t4.ftcdn.net/jpg/02/07/15/43/360_F_207154340_wLIJus4m3SBl5sAQmpqN3Um7REnUhskU.jpg')",
       }}
     >
       <div
-        className="w-full max-w-md bg-black bg-opacity-30 backdrop-blur-md shadow-green-400/80 shadow-lg rounded-lg p-8
-                animate-pulse-slow border-2 border-green-500"
+        className="w-full max-w-md sm:max-w-lg bg-black bg-opacity-30 backdrop-blur-md shadow-green-400/80 shadow-lg rounded-lg p-6 sm:p-8
+                border-2 border-green-500"
       >
-        <h2 className="text-3xl font-bold text-center text-green-400 mb-6 drop-shadow-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-400 mb-6 drop-shadow-lg">
           {isLoginForm ? "Login" : "Sign Up"}
         </h2>
 
@@ -63,7 +63,7 @@ const Login = () => {
           {!isLoginForm && (
             <>
               <div>
-                <label className="block text-sm font-medium text-green-300">
+                <label className="block text-sm sm:text-base font-medium text-green-300">
                   First Name
                 </label>
                 <input
@@ -71,12 +71,12 @@ const Login = () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Enter First Name"
-                  className="mt-1 w-full px-3 py-2 rounded-lg focus:outline-none focus:ring focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-green-300">
+                <label className="block text-sm sm:text-base font-medium text-green-300">
                   Last Name
                 </label>
                 <input
@@ -84,14 +84,14 @@ const Login = () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Enter Last Name"
-                  className="mt-1 w-full px-3 py-2 rounded-lg focus:outline-none focus:ring focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
                 />
               </div>
             </>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-green-300">
+            <label className="block text-sm sm:text-base font-medium text-green-300">
               Email ID
             </label>
             <input
@@ -99,12 +99,12 @@ const Login = () => {
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
               placeholder="Enter Your Email"
-              className="mt-1 w-full px-3 py-2 rounded-lg focus:outline-none focus:ring focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-green-300">
+            <label className="block text-sm sm:text-base font-medium text-green-300">
               Password
             </label>
             <input
@@ -112,24 +112,26 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter Password"
-              className="mt-1 w-full px-3 py-2 rounded-lg focus:outline-none focus:ring focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
             />
           </div>
         </div>
 
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-sm sm:text-base mt-2">{error}</p>
+        )}
 
         <div className="mt-6">
           <button
             onClick={isLoginForm ? handleLogin : handleSignUp}
-            className="w-full bg-green-600 bg-opacity-80 text-black py-2 rounded-lg hover:bg-green-500 hover:bg-opacity-90 transition cursor-pointer shadow-lg shadow-green-400/50"
+            className="w-full bg-green-600 bg-opacity-80 text-black py-2 sm:py-3 rounded-lg hover:bg-green-500 hover:bg-opacity-90 transition cursor-pointer shadow-lg shadow-green-400/50 text-sm sm:text-base"
           >
             {isLoginForm ? "Login" : "Sign Up"}
           </button>
         </div>
 
         <p
-          className="text-center text-green-400 hover:underline cursor-pointer mt-4"
+          className="text-center text-green-400 hover:underline cursor-pointer mt-4 text-sm sm:text-base"
           onClick={() => setIsLoginForm(!isLoginForm)}
         >
           {isLoginForm

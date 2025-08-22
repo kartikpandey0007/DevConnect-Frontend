@@ -41,12 +41,16 @@ const Requests = () => {
   }, []);
 
   if (filteredRequests.length === 0) {
-    return <h1 className="flex justify-center my-10">No Requests found</h1>;
+    return (
+      <h1 className="flex justify-center items-center text-center font-semibold text-green-400 my-10 text-lg sm:text-xl">
+        No Requests found
+      </h1>
+    );
   }
 
   return (
-    <div className="text-center justify-center my-10 ">
-      <h1 className="text-4xl font-bold text-green-400 mb-8 drop-shadow-lg">
+    <div className="text-center justify-center my-10 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-400 mb-8 drop-shadow-lg">
         Requests
       </h1>
 
@@ -66,14 +70,14 @@ const Requests = () => {
             key={_id}
             className="flex flex-col sm:flex-row justify-between items-start sm:items-center
                    bg-black text-green-400 rounded-xl shadow-lg shadow-green-400/30
-                   p-4 mx-auto mb-6 w-11/12 md:w-3/4 lg:w-2/3 transition-transform
+                   p-4 mx-auto mb-6 w-full sm:w-11/12 md:w-3/4 lg:w-2/3 transition-transform
                    duration-300 hover:scale-105"
           >
             {/* User Image */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 mx-auto sm:mx-0">
               <img
                 alt="image"
-                className="w-24 h-24 rounded-full border-2 border-green-600"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-green-600 object-cover"
                 src={
                   photoUrl || "https://www.w3schools.com/howto/img_avatar.png"
                 }
@@ -82,25 +86,27 @@ const Requests = () => {
 
             {/* User Info */}
             <div className="text-left sm:ml-6 mt-4 sm:mt-0 flex-1">
-              <h2 className="font-bold text-xl text-green-300">
+              <h2 className="font-bold text-lg sm:text-xl text-green-300">
                 {firstName + " " + lastName}
               </h2>
               {age && gender && (
                 <p className="text-green-200 text-sm">{age + ", " + gender}</p>
               )}
               {skills && (
-                <p className="font-semibold text-green-400 mt-1 flex flex-wrap">
+                <p className="font-semibold text-green-400 mt-1 flex flex-wrap text-sm sm:text-base">
                   Skills: {skills.map((skill) => skill).join(", ")}
                 </p>
               )}
-              <p className="text-green-200 mt-2 break-words">{about}</p>
+              <p className="text-green-200 mt-2 break-words text-sm sm:text-base">
+                {about}
+              </p>
             </div>
 
             {/* Buttons */}
             <div className="flex gap-2 mt-4 sm:mt-0 sm:ml-4 self-center">
               <button
-                className="btn bg-green-600 text-black hover:bg-green-500 border-none px-4
-                       shadow-md hover:shadow-green-400/70 transition duration-300"
+                className="bg-green-600 text-black px-3 sm:px-4 py-1 sm:py-2 rounded-md hover:bg-green-500 border-none 
+                       shadow-md hover:shadow-green-400/70 transition duration-300 text-sm sm:text-base"
                 onClick={() => {
                   reviewRequest("accepted", request._id);
                 }}
@@ -108,8 +114,8 @@ const Requests = () => {
                 Accept
               </button>
               <button
-                className="btn bg-gray-800 text-green-400 hover:bg-gray-700 border border-green-600 px-4
-                       shadow-md hover:shadow-green-400/70 transition duration-300"
+                className="bg-gray-800 text-green-400 px-3 sm:px-4 py-1 sm:py-2 rounded-md hover:bg-gray-700 border border-green-600 
+                       shadow-md hover:shadow-green-400/70 transition duration-300 text-sm sm:text-base"
                 onClick={() => {
                   reviewRequest("rejected", request._id);
                 }}
