@@ -11,7 +11,7 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    if (feed) return; // If feed data is already present, no need to fetch again
+    if (feed && feed.length > 0) return; // Only fetch if feed is empty
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
@@ -42,19 +42,18 @@ const Feed = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-green-400 px-4 sm:px-6 lg:px-8">
+    <div className="bg-black min-h-screen text-green-400 flex flex-col items-center px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-5xl">
         <h1
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-500 -my-1 
-                 drop-shadow-[0_0_8px_rgba(0,255,0,0.8)] text-center mb-6"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-500 
+                     -my-1 drop-shadow-[0_0_8px_rgba(0,255,0,0.8)] text-center mb-6"
         >
           Your Feed
         </h1>
 
-        <div className="flex justify-center">
-          <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
-            <UserCard user={feed[0]} />
-          </div>
+        {/* Centering UserCard */}
+        <div className="w-full max-w-md mx-auto">
+          <UserCard user={feed[0]} />
         </div>
       </div>
     </div>
