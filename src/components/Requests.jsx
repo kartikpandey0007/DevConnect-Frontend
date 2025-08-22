@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Requests = () => {
   const [requests, setRequests] = useState([]);
@@ -40,6 +41,8 @@ const Requests = () => {
     getRequests();
   }, []);
 
+  if(!filteredRequests) return <Shimmer/>
+  
   if (filteredRequests.length === 0) {
     return (
       <h1 className="flex justify-center items-center text-center font-semibold text-green-400 my-10 text-lg sm:text-xl">

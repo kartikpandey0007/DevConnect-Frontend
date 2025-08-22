@@ -1,24 +1,37 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Connections = () => {
   const [connections, setConnections] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // loading state
 
   const getConnections = async () => {
     try {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
-      setConnections(res.data.data);
+      setConnections(res.data.data || []); // ensure array
     } catch (error) {
       console.error(error);
+      setConnections([]); // fallback
+    } finally {
+      setIsLoading(false); // stop loader
     }
   };
 
   useEffect(() => {
     getConnections();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <Shimmer />
+      </div>
+    );
+  }
 
   if (connections.length === 0) {
     return (
@@ -29,7 +42,6 @@ const Connections = () => {
   }
 
   const handleChat = (connectionId) => {
-    // Replace with your chat navigation or functionality
     console.log("Chat with:", connectionId);
   };
 
@@ -75,12 +87,12 @@ const Connections = () => {
                 </h2>
                 {age && gender && (
                   <p className="text-green-200 text-xs sm:text-sm">
-                    {age + ", " + gender}
+                    {age}, {gender}
                   </p>
                 )}
                 {skills && (
                   <p className="font-semibold text-green-400 mt-1 flex flex-wrap text-xs sm:text-sm">
-                    Skills: {skills.map((skill) => skill).join(", ")}
+                    Skills: {skills.join(", ")}
                   </p>
                 )}
                 <p className="text-green-200 mt-2 text-sm sm:text-base break-words">
