@@ -50,13 +50,10 @@ const EntryPage = () => {
     );
   });
 
-  return (
+return (
     <div className="flex flex-col items-center justify-start bg-black min-h-screen text-green-400 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-7xl">
-        <h1
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-500 -my-1 
-                 drop-shadow-[0_0_8px_rgba(0,255,0,0.8)] text-center sm:text-left"
-        >
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-500 -my-1 drop-shadow-[0_0_8px_rgba(0,255,0,0.8)] text-center sm:text-left">
           Users
         </h1>
 
@@ -74,7 +71,8 @@ const EntryPage = () => {
         </div>
 
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* center items inside each grid cell to avoid overflow from card widths */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
             {filteredFeed.map((key) => (
               <Cards key={key._id} user={key} />
             ))}

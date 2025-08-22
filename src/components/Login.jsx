@@ -117,9 +117,7 @@ const Login = () => {
           </div>
         </div>
 
-        {error && (
-          <p className="text-red-500 text-sm sm:text-base mt-2">{error}</p>
-        )}
+        {error && <p className="text-red-500 text-sm sm:text-base mt-2">{error}</p>}
 
         <div className="mt-6">
           <button
