@@ -98,7 +98,7 @@ const Login = () => {
               type="text"
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
-              placeholder="Enter Your EmailId"
+              placeholder="Enter Your Email"
               className="mt-1 w-full px-3 py-2 rounded-lg focus:outline-none focus:ring focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300"
             />
           </div>
