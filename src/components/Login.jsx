@@ -45,17 +45,11 @@ const Login = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('https://t4.ftcdn.net/jpg/02/07/15/43/360_F_207154340_wLIJus4m3SBl5sAQmpqN3Um7REnUhskU.jpg')",
-      }}
+      className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 bg-center bg-cover"
+      
     >
-      <div
-        className="w-full max-w-md sm:max-w-lg bg-black bg-opacity-30 backdrop-blur-md shadow-green-400/80 shadow-lg rounded-lg p-6 sm:p-8
-                border-2 border-green-500"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-400 mb-6 drop-shadow-lg">
+      <div className="w-full max-w-md sm:max-w-lg  backdrop-blur-sm rounded-lg p-6 sm:p-8 border-2 border-green-600 shadow-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-400 mb-6">
           {isLoginForm ? "Login" : "Sign Up"}
         </h2>
 
@@ -71,7 +65,7 @@ const Login = () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Enter First Name"
-                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
                 />
               </div>
 
@@ -84,7 +78,7 @@ const Login = () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Enter Last Name"
-                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
                 />
               </div>
             </>
@@ -99,7 +93,7 @@ const Login = () => {
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
               placeholder="Enter Your Email"
-              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
             />
           </div>
 
@@ -112,29 +106,29 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter Password"
-              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-white bg-black bg-opacity-50 border-2 border-green-500 placeholder-green-300 text-sm sm:text-base"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
             />
           </div>
         </div>
 
-        {error && <p className="text-red-500 text-sm sm:text-base mt-2">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-sm sm:text-base mt-3 text-center">{error}</p>
+        )}
 
         <div className="mt-6">
           <button
             onClick={isLoginForm ? handleLogin : handleSignUp}
-            className="w-full bg-green-600 bg-opacity-80 text-black py-2 sm:py-3 rounded-lg hover:bg-green-500 hover:bg-opacity-90 transition cursor-pointer shadow-lg shadow-green-400/50 text-sm sm:text-base"
+            className="w-full bg-green-600 text-black py-2 sm:py-3 rounded-md hover:bg-green-500 transition shadow-md text-sm sm:text-base cursor-pointer"
           >
             {isLoginForm ? "Login" : "Sign Up"}
           </button>
         </div>
 
         <p
-          className="text-center text-green-400 hover:underline cursor-pointer mt-4 text-sm sm:text-base"
+          className="text-center text-green-300 hover:underline cursor-pointer mt-4 text-sm sm:text-base"
           onClick={() => setIsLoginForm(!isLoginForm)}
         >
-          {isLoginForm
-            ? "New User? Sign Up First"
-            : "Already have an account? Login"}
+          {isLoginForm ? "New User? Sign Up First" : "Already have an account? Login"}
         </p>
       </div>
     </div>

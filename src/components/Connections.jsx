@@ -1,6 +1,6 @@
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
-import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 
 const Connections = () => {
@@ -27,7 +27,7 @@ const Connections = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="min-h-screen flex items-center justify-center">
         <Shimmer />
       </div>
     );
@@ -46,74 +46,77 @@ const Connections = () => {
   };
 
   return (
-    <div className="text-center my-6 sm:my-10 px-4">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-400 mb-6 sm:mb-8 drop-shadow-lg">
-        Connections
-      </h1>
+    <div className="min-h-screen px-4 py-12">
+      {/* Centered wide panel */}
+      <div className="w-full max-w-6xl mx-auto">
+        {/* big centered heading */}
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-green-400 mb-10 drop-shadow-[0_6px_18px_rgba(0,255,102,0.18)]">
+          Connections
+        </h1>
 
-      {connections.map((connection) => {
-        const {
-          _id,
-          firstName,
-          lastName,
-          photoUrl,
-          about,
-          age,
-          gender,
-          skills,
-        } = connection;
-        return (
-          <div
-            key={_id}
-            className="flex flex-col sm:flex-row items-start sm:items-center 
-                 bg-black text-green-400 rounded-xl shadow-lg shadow-green-400/30 
-                 p-4 sm:p-6 mx-auto mb-4 sm:mb-6 w-full sm:w-11/12 md:w-3/4 lg:w-2/3 
-                 transition-transform duration-300 hover:scale-105"
-          >
-            <div className="flex-shrink-0 mx-auto sm:mx-0">
-              <img
-                alt="profile"
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-green-600 object-cover"
-                src={
-                  photoUrl || "https://www.w3schools.com/howto/img_avatar.png"
-                }
-              />
-            </div>
+        <div className="space-y-6">
+          {connections.map((connection) => {
+            const {
+              _id,
+              firstName,
+              lastName,
+              photoUrl,
+              about,
+              age,
+              gender,
+              skills,
+            } = connection;
 
-            <div className="flex-1 sm:ml-6 mt-4 sm:mt-0 flex flex-col sm:flex-row justify-between items-start w-full">
-              <div className="text-left w-full sm:w-auto">
-                <h2 className="font-bold text-lg sm:text-xl text-green-300">
-                  {firstName} {lastName}
-                </h2>
-                {age && gender && (
-                  <p className="text-green-200 text-xs sm:text-sm">
-                    {age}, {gender}
-                  </p>
-                )}
-                {skills && (
-                  <p className="font-semibold text-green-400 mt-1 flex flex-wrap text-xs sm:text-sm">
-                    Skills: {skills.join(", ")}
-                  </p>
-                )}
-                <p className="text-green-200 mt-2 text-sm sm:text-base break-words">
-                  {about}
-                </p>
+            return (
+              <div
+                key={_id}
+                className="flex flex-col sm:flex-row items-start sm:items-center justify-between  border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-lg"
+              >
+                {/* left: avatar + info */}
+                <div className="flex items-start sm:items-center gap-5">
+                  <img
+                    alt="profile"
+                    src={photoUrl || "https://www.w3schools.com/howto/img_avatar.png"}
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-green-500/70"
+                  />
+
+                  <div className="text-left">
+                    <h2 className="text-green-300 text-xl sm:text-2xl font-semibold">
+                      {firstName} {lastName}
+                    </h2>
+
+                    {age && gender && (
+                      <p className="text-green-200 text-sm mt-1">{age}, {gender}</p>
+                    )}
+
+                    {skills && (
+                      <p className="text-green-400 text-sm font-medium mt-2">
+                        Skills: {Array.isArray(skills) ? skills.join(", ") : skills}
+                      </p>
+                    )}
+
+                    {about && (
+                      <p className="text-green-200 text-sm mt-2 max-w-xl">
+                        {about}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* right: Chat button */}
+                <div className="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
+                  <button
+                    className="bg-green-500 text-black font-semibold px-5 py-2 rounded-full hover:bg-green-400 transition shadow-md cursor-pointer"
+                    onClick={() => handleChat(_id)}
+                  >
+                    Chat
+                  </button>
+                </div>
               </div>
-
-              <div className="mt-3 sm:mt-0 sm:ml-4 flex-shrink-0">
-                <button
-                  className="bg-green-600 text-black font-semibold py-2 px-5 rounded-lg 
-                       hover:bg-green-500 border-none shadow-md hover:shadow-green-400/70 
-                       transition duration-300 text-sm sm:text-base w-full"
-                  onClick={() => handleChat(_id)}
-                >
-                  Chat
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

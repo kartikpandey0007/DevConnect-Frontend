@@ -22,44 +22,53 @@ const Cards = ({ user }) => {
   };
 
   return (
-    // NOTE: no external margin (grid gap will handle spacing). width is fluid and constrained by max-w.
-    <div className="w-full max-w-sm md:max-w-[20rem] p-4 rounded-2xl bg-black border border-green-500 shadow-[0_0_20px_rgba(0,255,102,0.3)] hover:shadow-[0_0_30px_rgba(0,255,102,0.6)] transition-all duration-300 cursor-pointer flex flex-col justify-between mx-auto">
-      <div>
-        <img
-          className="w-full h-48 sm:h-56 md:h-60 object-cover rounded-xl mb-3 border border-green-500"
-          alt="profile"
-          src={photoUrl || "https://via.placeholder.com/300x300?text=No+Image"}
-        />
-        <div className="text-green-200">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-1">
+    // Fixed height card
+    <div className="w-full max-w-sm md:max-w-[20rem] h-[500px] p-4 rounded-xl border border-green-600/20 shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300 cursor-pointer flex flex-col mx-auto">
+      
+      {/* Image stays fixed at top */}
+      <img
+        className="w-full h-48 sm:h-56 md:h-60 object-cover rounded-lg mb-3 border border-green-600/20"
+        alt="profile"
+        src={photoUrl || "https://via.placeholder.com/300x300?text=No+Image"}
+      />
+
+      {/* Scrollable content below image */}
+      <div className="flex-1 overflow-auto">
+        <div className="text-white">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-1 break-words">
             {firstName + " " + lastName}
           </h2>
 
           {age && gender && (
-            <p className="mb-2 text-sm sm:text-base">{age + ", " + gender}</p>
+            <p className="mb-2 text-sm sm:text-base text-gray-300 break-words">
+              {age + ", " + gender}
+            </p>
           )}
 
           {skills && (
-            <p className="font-semibold text-green-400 mt-1 flex flex-wrap text-sm sm:text-base">
+            <p className="font-medium text-green-400 mt-1 flex flex-wrap text-sm sm:text-base break-words">
               {skills.map((skill) => skill).join(", ")}
             </p>
           )}
 
           {about && (
-            <p className="mb-4 text-sm sm:text-base leading-snug break-words">{about}</p>
+            <p className="mb-4 text-sm sm:text-base leading-snug break-words whitespace-pre-wrap text-gray-200">
+              {about}
+            </p>
           )}
         </div>
       </div>
 
+      {/* Buttons stay at bottom */}
       <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-4">
         <button
-          className="w-full sm:flex-1 bg-green-500 text-black font-bold py-2 rounded-lg hover:bg-green-400 hover:shadow-[0_0_12px_#00ff66] transition text-sm sm:text-base"
+          className="w-full sm:flex-1 bg-green-500 text-black font-semibold py-2 rounded-lg hover:bg-green-400 hover:shadow-md transition text-sm sm:text-base cursor-pointer"
           onClick={() => handleSendRequest("interested", _id)}
         >
           Send Request
         </button>
         <button
-          className="w-full sm:flex-1 bg-red-600 text-black font-bold py-2 rounded-lg hover:bg-red-500 hover:shadow-[0_0_12px_#ff4444] transition text-sm sm:text-base"
+          className="w-full sm:flex-1 bg-red-500 text-black font-semibold py-2 rounded-lg hover:bg-red-400 hover:shadow-md transition text-sm sm:text-base cursor-pointer"
           onClick={() => handleSendRequest("ignored", _id)}
         >
           Ignore

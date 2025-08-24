@@ -5,12 +5,10 @@ import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
-
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
-
   const fecthUser = async () => {
     if (userData) return;
     try {
@@ -25,25 +23,18 @@ const Body = () => {
       console.error(err);
     }
   };
-
   useEffect(() => {
     fecthUser();
   }, []);
-
   return (
-    <div
-      className="min-h-screen flex flex-col bg-black bg-opacity-80 text-green-200 bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('https://t4.ftcdn.net/jpg/02/07/15/43/360_F_207154340_wLIJus4m3SBl5sAQmpqN3Um7REnUhskU.jpg')",
-      }}
-    >
-      <NavBar />
-      <div className="flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-12 w-full max-w-7xl mx-auto">
-        <Outlet />
-      </div>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-black to-gray-800 text-green-200">
+      {" "}
+      <NavBar />{" "}
+      <div className="flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12 lg:px-16 lg:py-14 w-full max-w-7xl mx-auto bg-black/60 backdrop-blur-md rounded-2xl shadow-xl border border-green-500/10">
+        {" "}
+        <Outlet />{" "}
+      </div>{" "}
     </div>
   );
 };
-
 export default Body;

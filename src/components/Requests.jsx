@@ -12,9 +12,7 @@ const Requests = () => {
       const res = await axios.post(
         BASE_URL + "/request/review/" + status + "/" + _id,
         {},
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
 
       if (res.status >= 200 && res.status < 300) {
@@ -41,94 +39,97 @@ const Requests = () => {
     getRequests();
   }, []);
 
-  if(!filteredRequests) return <Shimmer/>
-  
+  if (!filteredRequests) return <Shimmer />;
+
   if (filteredRequests.length === 0) {
     return (
-      <h1 className="flex justify-center items-center text-center font-semibold text-green-400 my-10 text-lg sm:text-xl">
+      <h1 className="text-green-300 text-center mt-10 text-lg sm:text-xl md:text-2xl">
         No Requests found
       </h1>
     );
   }
 
   return (
-    <div className="text-center justify-center my-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-400 mb-8 drop-shadow-lg">
-        Requests
-      </h1>
+    <div className="min-h-screen px-4 py-12">
+      {/* Centered wide panel */}
+      <div className="w-full max-w-6xl mx-auto">
+        {/* big centered heading */}
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-green-400 mb-10 drop-shadow-[0_6px_18px_rgba(0,255,102,0.18)]">
+          Requests
+        </h1>
 
-      {filteredRequests.map((request) => {
-        const {
-          _id,
-          firstName,
-          lastName,
-          photoUrl,
-          about,
-          age,
-          gender,
-          skills,
-        } = request.fromUserId;
-        return (
-          <div
-            key={_id}
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-center
-                   bg-black text-green-400 rounded-xl shadow-lg shadow-green-400/30
-                   p-4 mx-auto mb-6 w-full sm:w-11/12 md:w-3/4 lg:w-2/3 transition-transform
-                   duration-300 hover:scale-105"
-          >
-            {/* User Image */}
-            <div className="flex-shrink-0 mx-auto sm:mx-0">
-              <img
-                alt="image"
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-green-600 object-cover"
-                src={
-                  photoUrl || "https://www.w3schools.com/howto/img_avatar.png"
-                }
-              />
-            </div>
+        {/* cards list area with some left-right padding */}
+        <div className="space-y-6">
+          {filteredRequests.map((request) => {
+            const {
+              _id,
+              firstName,
+              lastName,
+              photoUrl,
+              about,
+              age,
+              gender,
+              skills,
+            } = request.fromUserId;
 
-            {/* User Info */}
-            <div className="text-left sm:ml-6 mt-4 sm:mt-0 flex-1">
-              <h2 className="font-bold text-lg sm:text-xl text-green-300">
-                {firstName + " " + lastName}
-              </h2>
-              {age && gender && (
-                <p className="text-green-200 text-sm">{age + ", " + gender}</p>
-              )}
-              {skills && (
-                <p className="font-semibold text-green-400 mt-1 flex flex-wrap text-sm sm:text-base">
-                  Skills: {skills.map((skill) => skill).join(", ")}
-                </p>
-              )}
-              <p className="text-green-200 mt-2 break-words text-sm sm:text-base">
-                {about}
-              </p>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex gap-2 mt-4 sm:mt-0 sm:ml-4 self-center">
-              <button
-                className="bg-green-600 text-black px-3 sm:px-4 py-1 sm:py-2 rounded-md hover:bg-green-500 border-none 
-                       shadow-md hover:shadow-green-400/70 transition duration-300 text-sm sm:text-base"
-                onClick={() => {
-                  reviewRequest("accepted", request._id);
-                }}
+            return (
+              <div
+                key={_id}
+                className="flex flex-col sm:flex-row items-start sm:items-center justify-between  border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-lg"
               >
-                Accept
-              </button>
-              <button
-                className="bg-gray-800 text-green-400 px-3 sm:px-4 py-1 sm:py-2 rounded-md hover:bg-gray-700 border border-green-600 
-                       shadow-md hover:shadow-green-400/70 transition duration-300 text-sm sm:text-base"
-                onClick={() => {
-                  reviewRequest("rejected", request._id);
-                }}
-              >
-                Reject
-              </button>
-            </div>
-          </div>
-        );
-      })}
+                {/* left: avatar + info */}
+                <div className="flex items-start sm:items-center gap-5">
+                  <img
+                    alt="profile"
+                    src={photoUrl || "https://www.w3schools.com/howto/img_avatar.png"}
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-green-500/70"
+                  />
+
+                  <div className="text-left">
+                    <h2 className="text-green-300 text-xl sm:text-2xl font-semibold">
+                      {firstName} {lastName}
+                    </h2>
+
+                    {age && gender && (
+                      <p className="text-green-200 text-sm mt-1">{age}, {gender}</p>
+                    )}
+
+                    {skills && (
+                      <p className="text-green-400 text-sm font-medium mt-2">
+                        Skills: {Array.isArray(skills) ? skills.join(", ") : skills}
+                      </p>
+                    )}
+
+                    {about && (
+                      <p className="text-green-200 text-sm mt-2 max-w-xl">
+                        {about}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* right: actions (align right on wider screens) */}
+                <div className="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
+                  <div className="flex gap-3 items-center">
+                    <button
+                      className="bg-green-500 text-black font-semibold px-5 py-2 rounded-full hover:bg-green-400 transition shadow-md cursor-pointer"
+                      onClick={() => reviewRequest("accepted", request._id)}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="bg-gray-800 text-green-300 px-4 py-2 rounded-full hover:bg-gray-700 transition cursor-pointer"
+                      onClick={() => reviewRequest("rejected", request._id)}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
