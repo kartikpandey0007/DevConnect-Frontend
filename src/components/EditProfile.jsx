@@ -49,32 +49,29 @@ const EditProfile = ({ user }) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center items-start my-6 md:my-10 text-green-200 px-4 gap-6">
+      <div className="flex flex-col md:flex-row justify-center items-start my-6 md:my-10 text-green-200 px-4 md:px-10 gap-6 w-full max-w-5xl mx-auto">
         {/* Left: Form */}
-        <div className="w-full flex justify-center">
-          <div className="w-full sm:w-96  border border-green-600 rounded-xl shadow-lg">
+        <div className="w-full md:w-1/2 flex justify-center">
+          <div className="w-full border border-green-600 rounded-xl shadow-lg">
             <div className="p-5 sm:p-6">
               <h2 className="text-green-300 text-lg sm:text-xl font-semibold mb-4">
                 Edit Profile
               </h2>
 
+              {/* Form Fields */}
               <fieldset className="mb-4">
-                <legend className="text-sm text-green-300 mb-1">
-                  FirstName:
-                </legend>
+                <legend className="text-sm text-green-300 mb-1">FirstName:</legend>
                 <input
                   type="text"
                   value={firstName}
-                  className="w-full rounded-md px-3 py-2  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full rounded-md px-3 py-2 text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="eg: Johny"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </fieldset>
 
               <fieldset className="mb-4">
-                <legend className="text-sm text-green-300 mb-1">
-                  LastName:
-                </legend>
+                <legend className="text-sm text-green-300 mb-1">LastName:</legend>
                 <input
                   type="text"
                   value={lastName}
@@ -85,9 +82,7 @@ const EditProfile = ({ user }) => {
               </fieldset>
 
               <fieldset className="mb-4">
-                <legend className="text-sm text-green-300 mb-1">
-                  PhotoUrl:
-                </legend>
+                <legend className="text-sm text-green-300 mb-1">PhotoUrl:</legend>
                 <input
                   type="text"
                   value={photoUrl}
@@ -102,7 +97,7 @@ const EditProfile = ({ user }) => {
                 <input
                   type="text"
                   value={skills}
-                  className="w-full rounded-md px-3 py-2  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full rounded-md px-3 py-2 text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Add Your Skills"
                   onChange={(e) => setSkills(e.target.value)}
                 />
@@ -113,7 +108,7 @@ const EditProfile = ({ user }) => {
                 <div className="relative">
                   <select
                     value={gender}
-                    className="w-full rounded-md px-3 py-2  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none pr-8 cursor-pointer"
+                    className="w-full rounded-md px-3 py-2 text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none pr-8 cursor-pointer"
                     onChange={(e) => setGender(e.target.value)}
                   >
                     <option value="" disabled className="text-black">
@@ -134,7 +129,7 @@ const EditProfile = ({ user }) => {
                 <input
                   type="text"
                   value={age}
-                  className="w-full rounded-md px-3 py-2  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full rounded-md px-3 py-2 text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Enter age"
                   onChange={(e) => setAge(e.target.value)}
                 />
@@ -145,7 +140,7 @@ const EditProfile = ({ user }) => {
                 <textarea
                   type="text"
                   value={about}
-                  className="w-full rounded-md px-3 py-2  text-green-200 border border-green-600 h-24 sm:h-28 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                  className="w-full rounded-md px-3 py-2 text-green-200 border border-green-600 h-24 sm:h-28 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
                   placeholder="About You"
                   onChange={(e) => setAbout(e.target.value)}
                 ></textarea>
@@ -153,8 +148,7 @@ const EditProfile = ({ user }) => {
 
               <div className="flex justify-center">
                 <button
-                  className="w-full sm:w-auto text-green-300 border border-green-600 px-4 py-2 rounded-lg font-semibold 
-             hover:bg-green-300 hover:text-green-900 transition cursor-pointer"
+                  className="w-full sm:w-auto text-green-300 border border-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-green-300 hover:text-green-900 transition cursor-pointer"
                   onClick={handleEditProfile}
                 >
                   Edit Profile
@@ -165,12 +159,10 @@ const EditProfile = ({ user }) => {
         </div>
 
         {/* Right: Larger preview card */}
-        <div className="w-full sm:w-96 flex flex-col items-center sm:items-start">
-          <h1 className="font-bold text-green-300 text-center sm:text-left mb-4">
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
+          <h1 className="font-bold text-green-300 text-center md:text-left mb-4">
             My Profile (for Reference)
           </h1>
-
-          {/* make preview allowed to expand: full width on mobile, fixed on md+ */}
           <div className="w-full">
             <UserCard
               user={{

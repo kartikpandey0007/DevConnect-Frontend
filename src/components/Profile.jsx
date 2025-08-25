@@ -6,8 +6,8 @@ const Profile = () => {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="min-h-screen flex justify-center py-10">
-      <div className="w-full max-w-md flex flex-col gap-6">
+    <div className="min-h-screen flex justify-center py-10 px-4">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6">
         {user && <EditProfile user={user} />}
       </div>
     </div>

@@ -24,10 +24,9 @@ const Cards = ({ user }) => {
   return (
     // Fixed height card
     <div className="w-full max-w-sm md:max-w-[20rem] h-[500px] p-4 rounded-xl border border-green-600/20 shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300 cursor-pointer flex flex-col mx-auto">
-      
       {/* Image stays fixed at top */}
       <img
-        className="w-full h-48 sm:h-56 md:h-60 object-cover rounded-lg mb-3 border border-green-600/20"
+        className="w-full h-60 sm:h-56 md:h-60 object-cover rounded-lg mb-3 border border-green-600/20"
         alt="profile"
         src={photoUrl || "https://via.placeholder.com/300x300?text=No+Image"}
       />
