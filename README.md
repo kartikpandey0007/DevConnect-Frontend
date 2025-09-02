@@ -1,4 +1,4 @@
-# 💻 DevConnect Frontend
+#  DevConnect Frontend
 
 React + Redux frontend for **DevConnect** – a platform that enables developer networking, collaboration, and skill-sharing.
 
@@ -15,16 +15,16 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 ---
 
-## ✨ Features
+##  Features
 
-- 🔑 **Secure Authentication** – Login/Signup with JWT (via backend)  
-- 👥 **Connections & Feeds** – View, connect, and follow other developers  
-- 📝 **Post & Interact** – Create posts, like, and comment  
-- ⚡ **Real-Time Updates** – Dynamic feed updates and responsive UI
+-  **Secure Authentication** – Login/Signup with JWT (via backend)  
+-  **Connections & Feeds** – View, connect, and follow other developers  
+-  **Post & Interact** – Create posts, like, and comment  
+-  **Real-Time Updates** – Dynamic feed updates and responsive UI
 
 ---
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ```bash
 # Clone the repository
