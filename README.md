@@ -10,7 +10,7 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 - **Frontend:** React.js, Redux, React Router, TailwindCSS  
 - **State Management:** Redux Toolkit  
-- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/your-username/devconnect-backend))  
+- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/kartikpandey0007/DevConnect-backend))  
 - **Deployment:** (Add if deployed – e.g., Vercel/Netlify)
 
 ---
