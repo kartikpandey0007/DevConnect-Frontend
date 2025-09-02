@@ -6,7 +6,7 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 **[View Live App Here](http://54.205.222.250/login)**  
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** React.js, Redux, React Router, TailwindCSS  
 - **State Management:** Redux Toolkit  
