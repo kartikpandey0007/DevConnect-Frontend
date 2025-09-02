@@ -6,12 +6,12 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 **[View Live App Here](http://54.205.222.250/login)**  
 
-## Tech Stack
+## 🛠 Tech Stack
 
 - **Frontend:** React.js, Redux, React Router, TailwindCSS  
 - **State Management:** Redux Toolkit  
-- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/kartikpandey0007/DevConnect-backend))  
-- **Deployment:** AWS EC2
+- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/your-username/devconnect-backend))  
+- **Deployment:** (Add if deployed – e.g., Vercel/Netlify)
 
 ---
 
@@ -26,15 +26,26 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 ##  Installation & Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/devconnect-frontend.git
+Follow these steps to run the project locally:
 
-# Navigate into the project directory
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/devconnect-frontend.git
 cd devconnect-frontend
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Start the development server
+# 3. Create a .env file in the root and add:
+# (Make sure backend is running on the same port)
+REACT_APP_BACKEND_URL=http://localhost:3000
+
+# 4. Run the backend first
+cd ../devconnect-backend
+npm install
+npm run dev
+
+# 5. Run the frontend
+cd ../devconnect-frontend
+npm start
 npm start
