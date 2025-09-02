@@ -6,12 +6,12 @@ React + Redux frontend for **DevConnect** – a platform that enables developer 
 
 **[View Live App Here](http://54.205.222.250/login)**  
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** React.js, Redux, React Router, TailwindCSS  
 - **State Management:** Redux Toolkit  
-- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/your-username/devconnect-backend))  
-- **Deployment:** (Add if deployed – e.g., Vercel/Netlify)
+- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/kartikpandey0007/DevConnect-backend))  
+- **Deployment:** AWS EC2
 
 ---
 
