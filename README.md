@@ -41,11 +41,15 @@ npm install
 REACT_APP_BACKEND_URL=http://localhost:3000
 
 # 4. Run the backend first
-cd ../devconnect-backend
+git clone https://github.com/kartikpandey0007/Devconnect-Backend.git
+cd Devconnect-Backend
 npm install
+
+MONGO_URI=your_mongo_uri
+JWT_SECRET=your_jwt_secret
+PORT=3000
 npm run dev
 
 # 5. Run the frontend
-cd ../devconnect-frontend
-npm start
+cd Devconnect-Frontend
 npm start
