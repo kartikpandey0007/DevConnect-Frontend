@@ -30,7 +30,7 @@ Follow these steps to run the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/devconnect-frontend.git
+git clone https://github.com/kartikpandey0007/Devconnect-Frontend.git
 cd devconnect-frontend
 
 # 2. Install dependencies
