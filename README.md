@@ -1,12 +1,55 @@
-# React + Vite
+#  DevConnect Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Redux frontend for **DevConnect** – a platform that enables developer networking, collaboration, and skill-sharing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**[View Live App Here](http://54.205.222.250/login)**  
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React.js, Redux, React Router, TailwindCSS  
+- **State Management:** Redux Toolkit  
+- **API Integration:** Axios (connects to [DevConnect Backend](https://github.com/kartikpandey0007/DevConnect-backend))  
+- **Deployment:** (Add if deployed – e.g., Vercel/Netlify)
+
+---
+
+##  Features
+
+-  **Secure Authentication** – Login/Signup with JWT (via backend)  
+-  **Connections & Feeds** – View, connect, and follow other developers  
+-  **Post & Interact** – Create posts, like, and comment  
+-  **Real-Time Updates** – Dynamic feed updates and responsive UI
+
+---
+
+##  Installation & Setup
+
+Follow these steps to run the project locally:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/kartikpandey0007/Devconnect-Frontend.git
+cd Devconnect-Frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Create a .env file in the root and add:
+# (Make sure backend is running on the same port)
+REACT_APP_BACKEND_URL=http://localhost:3000
+
+# 4. Run the backend first
+git clone https://github.com/kartikpandey0007/Devconnect-Backend.git
+cd Devconnect-Backend
+npm install
+
+MONGO_URI=your_mongo_uri
+JWT_SECRET=your_jwt_secret
+PORT=3000
+npm run dev
+
+# 5. Run the frontend
+cd Devconnect-Frontend
+npm start
