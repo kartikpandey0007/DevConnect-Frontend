@@ -44,12 +44,22 @@ const Login = () => {
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 bg-center bg-cover"
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 bg-center bg-cover">
       
-    >
-      <div className="w-full max-w-md sm:max-w-lg  backdrop-blur-sm rounded-lg p-6 sm:p-8 border-2 border-green-600 shadow-lg">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-400 mb-6">
+      {/*Responsive Welcome Message */}
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-green-400 mb-4 sm:mb-6 text-center leading-tight drop-shadow-md">
+        👋 {isLoginForm ? "Welcome Back to DevTinder!" : "Join DevTinder Today!"}
+      </h1>
+
+      <p className="text-green-300 text-sm sm:text-base md:text-lg text-center max-w-md mb-6 sm:mb-8">
+        {isLoginForm
+          ? "Login to connect with developers and explore the community."
+          : "Create your account and start connecting with other developers!"}
+      </p>
+
+      {/*Form Card */}
+      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg backdrop-blur-sm rounded-lg p-6 sm:p-8 border-2 border-green-600 shadow-lg">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-green-400 mb-6">
           {isLoginForm ? "Login" : "Sign Up"}
         </h2>
 
@@ -65,7 +75,7 @@ const Login = () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Enter First Name"
-                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
                 />
               </div>
 
@@ -78,7 +88,7 @@ const Login = () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Enter Last Name"
-                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+                  className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
                 />
               </div>
             </>
@@ -93,7 +103,7 @@ const Login = () => {
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
               placeholder="Enter Your Email"
-              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
             />
           </div>
 
@@ -106,7 +116,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter Password"
-              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md  text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+              className="mt-1 w-full px-3 py-2 sm:py-3 rounded-md text-green-200 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
             />
           </div>
         </div>
