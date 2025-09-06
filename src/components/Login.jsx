@@ -48,7 +48,7 @@ const Login = () => {
       
       {/*Responsive Welcome Message */}
       <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-green-400 mb-4 sm:mb-6 text-center leading-tight drop-shadow-md">
-        👋 {isLoginForm ? "Welcome Back to DevTinder!" : "Join DevTinder Today!"}
+        👋 {isLoginForm ? "Welcome Back to DevConnect!" : "Join  DevConnect Today!"}
       </h1>
 
       <p className="text-green-300 text-sm sm:text-base md:text-lg text-center max-w-md mb-6 sm:mb-8">
