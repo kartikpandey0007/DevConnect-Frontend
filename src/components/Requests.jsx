@@ -51,14 +51,14 @@ const Requests = () => {
 
   return (
     <div className="min-h-screen px-4 py-12">
-      {/* Centered wide panel */}
+     
       <div className="w-full max-w-6xl mx-auto">
-        {/* big centered heading */}
+        
         <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-green-400 mb-10 drop-shadow-[0_6px_18px_rgba(0,255,102,0.18)]">
           Requests
         </h1>
 
-        {/* cards list area with some left-right padding */}
+       
         <div className="space-y-6">
           {filteredRequests.map((request) => {
             const {
@@ -77,7 +77,7 @@ const Requests = () => {
                 key={_id}
                 className="flex flex-col sm:flex-row items-start sm:items-center justify-between  border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-lg"
               >
-                {/* left: avatar + info */}
+               
                 <div className="flex items-start sm:items-center gap-5">
                   <img
                     alt="profile"
@@ -108,7 +108,7 @@ const Requests = () => {
                   </div>
                 </div>
 
-                {/* right: actions (align right on wider screens) */}
+                
                 <div className="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
                   <div className="flex gap-3 items-center">
                     <button

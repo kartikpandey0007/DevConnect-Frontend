@@ -10,6 +10,7 @@ import Body from "./components/Body";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
 import EntryPage from "./components/EntyPage";
+import Chat from "./components/Chat";
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/connections" element={<Connections/>}/>
         <Route path="/requests" element={<Requests />}/>
+        <Route path="/chat/:targetUserId" element={<Chat/>}/>
         </Route>
       </Routes>
       </BrowserRouter>

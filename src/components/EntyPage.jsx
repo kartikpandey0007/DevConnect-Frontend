@@ -57,7 +57,6 @@ const EntryPage = () => {
           Users
         </h1>
 
-        {/* Search Bar */}
         <div className="w-full flex justify-center sm:justify-start mb-6">
           <div className="w-full max-w-lg">
             <input

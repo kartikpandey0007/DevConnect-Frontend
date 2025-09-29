@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const [connections, setConnections] = useState([]);
@@ -41,15 +42,12 @@ const Connections = () => {
     );
   }
 
-  const handleChat = (connectionId) => {
-    console.log("Chat with:", connectionId);
-  };
 
   return (
     <div className="min-h-screen px-4 py-12">
-      {/* Centered wide panel */}
+      
       <div className="w-full max-w-6xl mx-auto">
-        {/* big centered heading */}
+      
         <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-green-400 mb-10 drop-shadow-[0_6px_18px_rgba(0,255,102,0.18)]">
           Connections
         </h1>
@@ -72,7 +70,7 @@ const Connections = () => {
                 key={_id}
                 className="flex flex-col sm:flex-row items-start sm:items-center justify-between  border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-lg"
               >
-                {/* left: avatar + info */}
+                
                 <div className="flex items-start sm:items-center gap-5">
                   <img
                     alt="profile"
@@ -103,14 +101,12 @@ const Connections = () => {
                   </div>
                 </div>
 
-                {/* right: Chat button */}
                 <div className="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
-                  <button
+                  <Link to={"/chat"+"/"+_id}> <button
                     className="bg-green-500 text-black font-semibold px-5 py-2 rounded-full hover:bg-green-400 transition shadow-md cursor-pointer"
-                    onClick={() => handleChat(_id)}
                   >
                     Chat
-                  </button>
+                  </button></Link>
                 </div>
               </div>
             );
