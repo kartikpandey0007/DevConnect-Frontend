@@ -5,7 +5,7 @@ export const createSocketConnection = () => {
     if(location.hostname === "localhost") {
         return io(BASE_URL,{ withCredentials: true });
     }else{//on production
-        return io("/",{path:"/api/socket.io",withCredentials: true });
+        return io("/",{path:"/api/socket.io",withCredentials: true,transports:['websocket']});
     }
    
 }
